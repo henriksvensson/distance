@@ -5,6 +5,13 @@ VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Distance", "Distance\Distance.csproj", "{722203E8-3BB7-45A3-9C13-0406CBB6EC3B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{386EA763-9C09-4F3D-B0DE-96E9F786C263}"
+	ProjectSection(SolutionItems) = preProject
+		Distance\microphone.png = Distance\microphone.png
+		Distance\plan.jpg = Distance\plan.jpg
+		Distance\referencepoint.png = Distance\referencepoint.png
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
