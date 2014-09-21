@@ -51,12 +51,16 @@
     <Compile Include="Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\DistanceDocumentEventArgs.cs" />
     <Compile Include="Model\Microphone.cs" />
     <Compile Include="Model\DistanceDocument.cs" />
     <Compile Include="Model\DistancePoint.cs" />
     <Compile Include="Model\ReferencePoint.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\DistanceIcon.cs" />
+    <Compile Include="View\MicrophoneIcon.cs" />
+    <Compile Include="View\ReferencePointIcon.cs" />
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>

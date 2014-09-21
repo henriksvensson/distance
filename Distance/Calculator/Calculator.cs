@@ -41,7 +41,7 @@ namespace Distance.Calculator
                 foreach (Microphone m in doc.Microphones)
                 {
                     DataRow dr = results.NewRow();
-                    dr[0] = "Microphone x";
+                    dr[0] = m.Name;
                     dr[1] = Math.Sqrt(Math.Pow(rp.X - m.X, 2) + Math.Pow(rp.Y - m.Y, 2));
 
                     results.Rows.Add(dr);

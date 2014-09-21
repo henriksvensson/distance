@@ -10,6 +10,7 @@ namespace Distance.Model
     {
         private int x;
         private int y;
+        private string name = "";
 
         public DistancePoint(int x, int y)
         {
@@ -17,8 +18,17 @@ namespace Distance.Model
             this.y = y;
         }
 
+        public DistancePoint(int x, int y, string name)
+        {
+            this.x = x;
+            this.y = y;
+            this.name = name;
+        }
+
         public int X { get { return x; } set { x = value; } }
 
         public int Y { get { return y; } set { y = value; } }
+
+        public string Name { get { return name; } set { name = value; } }
     }
 }

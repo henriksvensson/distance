@@ -19,13 +19,32 @@ namespace Distance.Model
 
         public Image Plan { get { return plan; } set { this.plan = value; } }
 
-        public delegate void ChangedEventHandler(object sender, EventArgs e);
+        #region Events
 
+        public delegate void MicrophoneAddedEventHandler(object sender, DistanceDocumentEventArgs e);
+        public event MicrophoneAddedEventHandler MicrophoneAdded;
+        protected virtual void OnMicrophoneAdded(DistanceDocumentEventArgs e)
+        {
+            if (MicrophoneAdded != null)
+                MicrophoneAdded(this, e);
+        }
+
+        public delegate void ChangedEventHandler(object sender, EventArgs e);
         public event ChangedEventHandler Changed;
+        protected virtual void OnChanged(EventArgs e)
+        {
+            if (Changed != null)
+                Changed(this, e);
+        }
+
+        #endregion
 
         public void AddMicrophone(Microphone m)
         {
             microphones.Add(m);
+            if (string.IsNullOrWhiteSpace(m.Name))
+                m.Name = "Microphone " + microphones.Count;
+            OnMicrophoneAdded(new DistanceDocumentEventArgs(m));
             OnChanged(EventArgs.Empty);
         }
 
@@ -33,12 +52,6 @@ namespace Distance.Model
         {
             referencePoints.Add(rp);
             OnChanged(EventArgs.Empty);
-        }
-        
-        protected virtual void OnChanged(EventArgs e)
-        {
-            if (Changed != null)
-                Changed(this, e);
         }
 
     }
