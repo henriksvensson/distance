@@ -1,8 +1,8 @@
 ﻿<Window x:Class="DistanceWPF.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+        Title="Distance" Height="457" Width="1047">
+    <Canvas x:Name="mainCanvas" Margin="10,10,26,18" MouseLeftButtonUp="mainCanvas_MouseLeftButtonUp">
+        <Image Height="100" Canvas.Left="259" Canvas.Top="166" Width="100"/>
+    </Canvas>
 </Window>
