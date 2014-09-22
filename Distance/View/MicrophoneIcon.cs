@@ -17,9 +17,16 @@ namespace Distance.View
         {
             this.mic = mic;
             this.icon = new PictureBox();
-            this.icon.Image = new Bitmap(@"C:\Users\Henrik\Documents\visual studio 2013\Projects\Distance\Distance\microphone.png");
-            this.icon.Location = new Point(mic.X, mic.Y);
+            Icon.SizeMode = PictureBoxSizeMode.AutoSize;
 
+            Bitmap b = new Bitmap(@"C:\Users\Henrik\Documents\visual studio 2013\Projects\Distance\Distance\microphone.png");
+            b.MakeTransparent();
+            Icon.Image = b;
+            
+            // Place the image so that the center of it is where the document mic coordinates are.
+            Icon.Location = new Point(mic.X - Icon.Image.Width / 2, mic.Y - Icon.Image.Height / 2);
+
+            // Register for updates on the mouse down event so that we may start a drag'n'drop operation.
             this.icon.MouseDown += icon_MouseDown;
         }
 

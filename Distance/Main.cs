@@ -25,13 +25,10 @@ namespace Distance
 
         private void Main_Load(object sender, EventArgs e)
         {
-            pMainArea.BackgroundImage = new Bitmap(@"C:\Users\Henrik\Documents\visual studio 2013\Projects\Distance\Distance\plan.jpg");
-            pMainArea.BackgroundImageLayout = ImageLayout.None;
-            pMainArea.MouseClick += pMainArea_MouseClick;
-
             pMainArea.AllowDrop = true;
             pMainArea.DragEnter += pMainArea_DragEnter;
             pMainArea.DragDrop += pMainArea_DragDrop;
+            pMainArea.MouseClick += pMainArea_MouseClick;
 
             doc = new DistanceDocument();
             doc.Changed += doc_Changed;
@@ -39,6 +36,9 @@ namespace Distance
 
             calc = new Calculator.Calculator(doc);
             dataGridView1.DataSource = calc.Results;
+
+            doc.Plan = new Bitmap(@"C:\Users\Henrik\Documents\visual studio 2013\Projects\Distance\Distance\plan.jpg");
+            doc.Scale = 0.3F; // meter per pixel
         }
 
         void pMainArea_MouseClick(object sender, MouseEventArgs e)
@@ -66,14 +66,23 @@ namespace Distance
 
         void doc_MicrophoneAdded(object sender, DistanceDocumentEventArgs e)
         {
+            // A new microphone was added to the document. Create a new icon for it
+            // and place it on the plan.
             var mi = new MicrophoneIcon(e.Microphone);
             pMainArea.Controls.Add(mi.Icon);
         }
 
         void doc_Changed(object sender, EventArgs e)
         {
-            calc.Recalculate();
-            dataGridView1.Refresh();
+            // Update background image if necessary
+            if (pMainArea.BackgroundImage != doc.Plan)
+                pMainArea.BackgroundImage = doc.Plan;
+
+            // Recalculate and update data grid
+            if(calc != null)
+                calc.Recalculate();
+            if(dataGridView1 != null)
+                dataGridView1.Refresh();
         }
 
     }

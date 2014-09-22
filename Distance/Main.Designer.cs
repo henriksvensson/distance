@@ -32,7 +32,6 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainerMain = new System.Windows.Forms.SplitContainer();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.pMainArea = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
@@ -75,42 +74,31 @@
             // 
             // splitContainerMain.Panel1
             // 
-            this.splitContainerMain.Panel1.Controls.Add(this.panel1);
             this.splitContainerMain.Panel1.Controls.Add(this.dataGridView1);
             // 
             // splitContainerMain.Panel2
             // 
             this.splitContainerMain.Panel2.Controls.Add(this.pMainArea);
             this.splitContainerMain.Size = new System.Drawing.Size(1278, 721);
-            this.splitContainerMain.SplitterDistance = 424;
+            this.splitContainerMain.SplitterDistance = 322;
             this.splitContainerMain.TabIndex = 2;
-            // 
-            // panel1
-            // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Location = new System.Drawing.Point(12, 159);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(398, 550);
-            this.panel1.TabIndex = 1;
             // 
             // dataGridView1
             // 
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 3);
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(398, 150);
+            this.dataGridView1.Size = new System.Drawing.Size(322, 721);
             this.dataGridView1.TabIndex = 0;
             // 
             // pMainArea
             // 
+            this.pMainArea.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pMainArea.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pMainArea.Location = new System.Drawing.Point(0, 0);
             this.pMainArea.Name = "pMainArea";
-            this.pMainArea.Size = new System.Drawing.Size(850, 721);
+            this.pMainArea.Size = new System.Drawing.Size(952, 721);
             this.pMainArea.TabIndex = 1;
             // 
             // Main
@@ -143,7 +131,6 @@
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.SplitContainer splitContainerMain;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel pMainArea;
     }
 }

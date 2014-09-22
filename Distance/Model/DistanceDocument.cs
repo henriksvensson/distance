@@ -12,12 +12,15 @@ namespace Distance.Model
         private List<Microphone> microphones = new List<Microphone>();
         private List<ReferencePoint> referencePoints = new List<ReferencePoint>();
         private Image plan = null;
+        private float scale = 0; // In meter per pixel
 
         public List<Microphone> Microphones { get { return microphones; } }
 
         public List<ReferencePoint> ReferencePoints { get { return referencePoints; } }
 
-        public Image Plan { get { return plan; } set { this.plan = value; } }
+        public Image Plan { get { return plan; } set { this.plan = value; OnChanged(EventArgs.Empty); } }
+
+        public float Scale { get { return scale; } set { scale = value; OnChanged(EventArgs.Empty); } }
 
         #region Events
 
