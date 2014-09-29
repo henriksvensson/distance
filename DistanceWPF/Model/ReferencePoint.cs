@@ -8,7 +8,7 @@ namespace Distance.Model
 {
     class ReferencePoint : DistancePoint
     {
-        public ReferencePoint(int x, int y)
+        public ReferencePoint(double x, double y)
             : base(x, y)
         { }
     }

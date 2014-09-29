@@ -14,10 +14,9 @@ namespace Distance.Model
         private List<Microphone> microphones = new List<Microphone>();
         private List<ReferencePoint> referencePoints = new List<ReferencePoint>();
         private ImageBrush plan = null;
-        private float scale = 0; // In meter per pixel
+        private double scale = 0; // In meter per pixel
 
         public List<Microphone> Microphones { get { return microphones; } }
-
         public List<ReferencePoint> ReferencePoints { get { return referencePoints; } }
 
         public ImageBrush Plan
@@ -33,7 +32,7 @@ namespace Distance.Model
             }
         }
 
-        public float Scale { get { return scale; } set { scale = value; OnChanged(EventArgs.Empty); } }
+        public double Scale { get { return scale; } set { scale = value; OnChanged(EventArgs.Empty); } }
 
         #region Events
 
@@ -43,6 +42,14 @@ namespace Distance.Model
         {
             if (MicrophoneAdded != null)
                 MicrophoneAdded(this, e);
+        }
+
+        public delegate void ReferencePointAddedEventHandler(object sender, DistanceDocumentEventArgs e);
+        public event ReferencePointAddedEventHandler ReferencePointAdded;
+        protected virtual void OnReferencePointAdded(DistanceDocumentEventArgs e)
+        {
+            if (ReferencePointAdded != null)
+                ReferencePointAdded(this, e);
         }
 
         public delegate void ChangedEventHandler(object sender, EventArgs e);
@@ -67,6 +74,7 @@ namespace Distance.Model
         public void AddReferencePoint(ReferencePoint rp)
         {
             referencePoints.Add(rp);
+            OnReferencePointAdded(new DistanceDocumentEventArgs(rp));
             OnChanged(EventArgs.Empty);
         }
 

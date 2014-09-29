@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using Distance.Model;
 using Distance.Calculator;
 using Distance.View;
+using System.Data;
 
 namespace DistanceWPF
 {
@@ -33,13 +34,13 @@ namespace DistanceWPF
             doc = new DistanceDocument();
             doc.Changed += doc_Changed;
             doc.MicrophoneAdded += doc_MicrophoneAdded;
+            doc.ReferencePointAdded += doc_ReferencePointAdded;
 
-            //calc = new Calculator.Calculator(doc);
-            //dataGridView1.DataSource = calc.Results;
+            calc = new Calculator(doc);
+            dataGrid.DataContext = calc.Distances;
 
             doc.Plan = new ImageBrush(new BitmapImage(new Uri(BaseUriHelper.GetBaseUri(this), "Images/plan.jpg")));
-            doc.Scale = 0.3F; // meter per pixel
-
+            doc.Scale = 0.3; // meter per pixel
         }
 
         void doc_MicrophoneAdded(object sender, DistanceDocumentEventArgs e)
@@ -51,6 +52,17 @@ namespace DistanceWPF
             // Center the icon on the coordinates from the document.
             Canvas.SetLeft(mi.Icon, e.Microphone.X - mi.Icon.Source.Width / 2);
             Canvas.SetTop(mi.Icon, e.Microphone.Y - mi.Icon.Source.Height / 2);
+        }
+
+        void doc_ReferencePointAdded(object sender, DistanceDocumentEventArgs e)
+        {
+            // A new ReferencePoint was added to the document. Create a new icon for it
+            // and place it on the plan.
+            var rp = new ReferencePointIcon(e.ReferencePoint);
+            mainCanvas.Children.Add(rp.Icon);
+            // Center the icon on the coordinates from the document.
+            Canvas.SetLeft(rp.Icon, e.ReferencePoint.X - rp.Icon.Source.Width / 2);
+            Canvas.SetTop(rp.Icon, e.ReferencePoint.Y - rp.Icon.Source.Height / 2);
         }
 
         void doc_Changed(object sender, EventArgs e)
@@ -69,6 +81,11 @@ namespace DistanceWPF
         private void mainCanvas_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             doc.AddMicrophone(new Microphone(e.GetPosition(mainCanvas).X, e.GetPosition(mainCanvas).Y));
+        }
+
+        private void mainCanvas_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            doc.AddReferencePoint(new ReferencePoint(e.GetPosition(mainCanvas).X, e.GetPosition(mainCanvas).Y));
         }
     }
 }
